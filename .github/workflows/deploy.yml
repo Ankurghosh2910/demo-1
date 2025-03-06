@@ -1,8 +1,11 @@
 name: Deploy
-on: [push]  # Run this workflow when you push code
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Hello
-        run: echo "Hello from GitHub Actions!"
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build Docker container
+        run: |
+          docker build -t my-container .
